@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="LightSource.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="stdafx.h" />
@@ -91,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Braitenberg Vehicle.cpp" />
+    <ClCompile Include="LightSource.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="stdafx.cpp" />

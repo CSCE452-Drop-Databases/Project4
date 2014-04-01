@@ -25,3 +25,10 @@ Vehicle::Vehicle(const Vehicle &v) {
 	velocity = v.velocity;
 	k = v.k;
 }
+
+double Vehicle::getRotation() {
+	//TODO should this be in degrees or radians?
+	//TODO implement this function
+
+	return 0; //placeholder
+}

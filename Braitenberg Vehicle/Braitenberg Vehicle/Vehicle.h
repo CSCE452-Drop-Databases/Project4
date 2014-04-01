@@ -19,6 +19,9 @@ public:
 	Vehicle(int w, int h, Point origin, Velocity v, Matrix<int> _k);
 	Vehicle(const Vehicle &v);
 	~Vehicle() {
-	
+		
 	}
+	
+	//Returns the vehicle's current rotation in (DEG?/RAD?)
+	double getRotation();
 };

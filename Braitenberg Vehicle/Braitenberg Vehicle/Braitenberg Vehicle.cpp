@@ -2,6 +2,7 @@
 #include "Point.h"
 #include "Matrix.h"
 #include "Vehicle.h"
+#include "LightSource.h"
 
 #include <gl/glut.h>
 
@@ -18,7 +19,7 @@ using namespace std;
 
 
 vector<Vehicle> vehicles;
-
+vector<LightSource> light_sources;
 
 
 
