@@ -14,6 +14,8 @@ public:
 	//Constructor
 	LightSource(Point p);
 
+	Point getSourceLocation();
+
 	//The intensity of this light source at point p
 	double intensity(Point p);
 };
