@@ -4,7 +4,7 @@
 class LightSource {
 private:
 	//Location of LightSource in the 2D world
-	Point source_location;
+	Point center;
 
 public:
 

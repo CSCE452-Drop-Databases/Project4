@@ -1,28 +1,32 @@
 #include "Vehicle.h"
 
 
-Vehicle::Vehicle(int w, int h, Point origin, Velocity v, Matrix<int> _k) {
-	if (w < VEHICLE_DEFAULT_WIDTH) {
-		printf("Error: Invalid vehicle width, using default (%d)\n", VEHICLE_DEFAULT_WIDTH);
-		w = VEHICLE_DEFAULT_WIDTH;
-	}
-	if (h < VEHICLE_DEFAULT_HEIGHT) {
-		printf("Error: Invalid vehicle height, using default (%d)\n", VEHICLE_DEFAULT_HEIGHT);
-		h 
-			= VEHICLE_DEFAULT_HEIGHT;
-	}
-	width = w;
-	height = h;
+Vehicle::Vehicle(Point origin, int _k) {
+	
+	width = VEHICLE_DEFAULT_WIDTH;
+	height = VEHICLE_DEFAULT_HEIGHT;
 	center = origin;
-	velocity = v;
-	k = _k;
+	k = Matrix<int>(2, 2);
+	if (_k == VEHICLE_K_CROSSED) {
+		k[0][0] = 0;
+		k[0][1] = 1;
+		k[1][0] = 1;
+		k[1][1] = 0;
+	}
+	else {
+		k[0][0] = 1;
+		k[0][1] = 0;
+		k[1][0] = 0;
+		k[1][1] = 1;
+	}
+
 }
 
 Vehicle::Vehicle(const Vehicle &v) {
 	width = v.width;
 	height = v.height;
 	center = v.center;
-	velocity = v.velocity;
+	//velocity = v.velocity;
 	k = v.k;
 }
 
@@ -31,4 +35,8 @@ double Vehicle::getRotation() {
 	//TODO implement this function
 
 	return 0; //placeholder
+}
+
+void Vehicle::updateWheelSpeed() {
+	// TODO
 }

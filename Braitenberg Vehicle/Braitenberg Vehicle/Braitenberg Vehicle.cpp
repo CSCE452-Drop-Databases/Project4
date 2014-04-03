@@ -46,8 +46,8 @@ void display(void)
 
 void moveVehicles(int value) {
 	for (int i = 0; i < vehicles.size(); ++i) {
-		vehicles[i].center.x += vehicles[i].velocity.x;
-		vehicles[i].center.y += vehicles[i].velocity.y;
+//		vehicles[i].center.x += vehicles[i].velocity.x;
+//		vehicles[i].center.y += vehicles[i].velocity.y;
 	}
 	glutTimerFunc(50, moveVehicles, 0);
 	glutPostRedisplay();
@@ -83,7 +83,7 @@ void init(void)
 
 	Matrix<int> k(2, 2);
 
-	Vehicle v1(10, 10, Point(200, 200), Velocity(0, 2), k);
+	Vehicle v1(Point(200,200), VEHICLE_K_STRAIGHT);
 	//Vehicle v2(10, 10, { 300, 300 }, { 0, 1 }, k);
 	//Vehicle v3(10, 10, { 400, 300 }, { 1, 1 }, k);
 

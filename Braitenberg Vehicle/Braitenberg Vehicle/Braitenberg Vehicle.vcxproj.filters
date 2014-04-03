@@ -50,9 +50,6 @@
     <ClCompile Include="Braitenberg Vehicle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Matrix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Vehicle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

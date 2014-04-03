@@ -1,20 +1,20 @@
 #include "LightSource.h"
 
 LightSource::LightSource(int _x, int _y) {
-	source_location.x = _x;
-	source_location.y = _y;
+	center.x = _x;
+	center.y = _y;
 }
 
 LightSource::LightSource(Point _p) {
-	source_location = _p;
+	center = _p;
 }
 
 Point LightSource::getSourceLocation() {
-	return source_location;
+	return center;
 }
 
 double LightSource::intensity(Point _p) {
-	double distance = point_distance(_p, source_location);
+	double distance = _p.distance(center);
 	if (distance == 0) {
 		return 100;
 	} else {
