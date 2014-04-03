@@ -1,6 +1,13 @@
+import platform
+
+sys = platform.system()
+
 env = Environment()
-#env.ParseFlags(['-framework=OpenGL'])
-env.Append(LINKFLAGS = ' -framework OpenGL -framework GLUT')
-#env.Append(LINKFLAGS = ' -framework OpenGL')
+
+if sys == "Darwin":
+    env.Append(LINKFLAGS = ' -framework OpenGL -framework GLUT')
+else:
+    env.Append(LINKFLAGS = '-lGL -lGLU -lglut')
+    
 env.Program(source = ['Braitenberg Vehicle.cpp', 'Point.cpp', 'Vehicle.cpp', 'Velocity.cpp'], target = 'BraitenbergVehicle.out')
 

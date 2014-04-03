@@ -49,7 +49,7 @@ void moveVehicles(int value) {
 		vehicles[i].center.x += vehicles[i].velocity.x;
 		vehicles[i].center.y += vehicles[i].velocity.y;
 	}
-	glutTimerFunc(50, moveVehicles, NULL);
+	glutTimerFunc(50, moveVehicles, 0);
 	glutPostRedisplay();
 }
 
@@ -91,7 +91,7 @@ void init(void)
 
 
 	//glutIdleFunc(moveVehicles);
-	glutTimerFunc(50, moveVehicles, NULL);
+	glutTimerFunc(50, moveVehicles, 0);
 
 }
 
