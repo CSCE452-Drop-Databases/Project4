@@ -46,6 +46,16 @@ public:
 
 	std::vector<T>& operator[] (int i) { return matrix[i]; }
 
+	Matrix operator* (const double s) {
+		Matrix prod(row, col);
+		for (int i = 0; i < row; ++i) {
+			for (int j = 0; j < col; ++j) {
+				prod[i][j] = matrix[i][j] * s;
+			}
+		}
+		return prod;
+	}
+
 	Matrix operator* (const Matrix &m) {
         Matrix prod(row, m.col);
         // checking dimensions
@@ -76,3 +86,7 @@ public:
 
 };
 
+template <typename T>
+Matrix<T> operator* (const double s, Matrix<T> m) {
+	return m*s;
+}

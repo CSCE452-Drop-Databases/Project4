@@ -37,6 +37,11 @@ double Vehicle::getRotation() {
 	return 0; //placeholder
 }
 
-void Vehicle::updateWheelSpeed() {
-	// TODO
+void Vehicle::updateWheelSpeed(std::vector<LightSource> ls) {
+	// TODO: Determine where sensors are since vehicle can rotate
+	// TODO: Decide how to implement this
+	// Could do it where it sums all intensities from every light
+	// OR could do it where it only uses closest light
+	rSOut = 0;
+	lSOut = 0;
 }

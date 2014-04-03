@@ -23,13 +23,10 @@ public:
 
 	Vehicle(Point origin, int _k);
 	Vehicle(const Vehicle &v);
-	~Vehicle() {
-		
-	}
 	
 	//Returns the vehicle's current rotation in (DEG?/RAD?)
 	double getRotation();
 
 	// Iterates over light sources and updates wheel speeds
-	void updateWheelSpeed();
+	void updateWheelSpeed(std::vector<LightSource> ls);
 };

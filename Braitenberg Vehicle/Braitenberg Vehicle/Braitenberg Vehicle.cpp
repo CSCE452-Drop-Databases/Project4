@@ -17,29 +17,45 @@ using namespace std;
 
 
 vector<Vehicle> vehicles;
-vector<LightSource> light_sources;
+vector<LightSource> lightSources;
 
+void drawVehicles() {
+	for (int i = 0; i < vehicles.size(); ++i) {
+		Point c = vehicles[i].center;
+		int w = vehicles[i].width / 2;
+		int h = vehicles[i].height / 2;
+		glBegin(GL_QUADS);
+			glColor3f(1.0f, 1.0f, 1.0f);
+			glVertex2f(c.x - w, c.y - h);
+			glVertex2f(c.x + w, c.y - h);
+			glVertex2f(c.x + w, c.y + h);
+			glVertex2f(c.x - w, c.y + h);
+		glEnd();
+	}
+}
 
+void drawLightSources() {
+	for (int i = 0; i < lightSources.size(); ++i) {
+		Point c = lightSources[i].center;
+		int w = lightSources[i].width / 2;
+		int h = lightSources[i].height / 2;
+		glBegin(GL_QUADS);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			glVertex2f(c.x - w, c.y - h);
+			glVertex2f(c.x + w, c.y - h);
+			glVertex2f(c.x + w, c.y + h);
+			glVertex2f(c.x - w, c.y + h);
+		glEnd();
+	}
+}
 
 void display(void)
 {
 	// should not be necessary but some GPUs aren't displaying anything until a clear call.
 	glClear(GL_COLOR_BUFFER_BIT);
 
-
-	for (int i = 0; i < vehicles.size(); ++i) {
-		Point c = vehicles[i].center;
-		int w = vehicles[i].width / 2;
-		int h = vehicles[i].height / 2;
-		glBegin(GL_QUADS);
-		glVertex2f(c.x - w, c.y - h);
-		glVertex2f(c.x + w, c.y - h);
-		glVertex2f(c.x + w, c.y + h);
-		glVertex2f(c.x - w, c.y + h);
-		glEnd();
-	}
-
-
+	drawVehicles();
+	drawLightSources();
 
 	glFlush();
 }
@@ -89,6 +105,8 @@ void init(void)
 
 	vehicles.push_back(v1);
 
+	LightSource ls1(Point(150, 150));
+	lightSources.push_back(ls1);
 
 	//glutIdleFunc(moveVehicles);
 	glutTimerFunc(50, moveVehicles, 0);
@@ -113,7 +131,6 @@ int main(int argc, char** argv)
 	glutMotionFunc(mouseMove);
 	glutKeyboardFunc(keyboard);
 	glutMainLoop();
-
 
 	return 0;
 }
