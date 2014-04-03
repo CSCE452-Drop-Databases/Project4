@@ -4,8 +4,6 @@
 #include "Vehicle.h"
 #include "LightSource.h"
 
-#include <gl/glut.h>
-
 using namespace std;
 
 /*--------------------------------------------------------------------------*/
@@ -85,7 +83,7 @@ void init(void)
 
 	Matrix<int> k(2, 2);
 
-	Vehicle v1(10, 10, { 200, 200 }, { 0, 2 }, k);
+	Vehicle v1(10, 10, Point(200, 200), Velocity(0, 2), k);
 	//Vehicle v2(10, 10, { 300, 300 }, { 0, 1 }, k);
 	//Vehicle v3(10, 10, { 400, 300 }, { 1, 1 }, k);
 
@@ -104,17 +102,17 @@ void init(void)
 
 int main(int argc, char** argv)
 {
-	//glutInit(&argc, argv);
-	//glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-	//glutInitWindowSize(ImageW, ImageH);
-	//glutInitWindowPosition(100, 100);
-	//glutCreateWindow("Braitenberg Vehicles");
-	//init();
-	//glutDisplayFunc(display);
-	//glutMouseFunc(mouseClick);
-	//glutMotionFunc(mouseMove);
-	//glutKeyboardFunc(keyboard);
-	//glutMainLoop();
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowSize(ImageW, ImageH);
+	glutInitWindowPosition(100, 100);
+	glutCreateWindow("Braitenberg Vehicles");
+	init();
+	glutDisplayFunc(display);
+	glutMouseFunc(mouseClick);
+	glutMotionFunc(mouseMove);
+	glutKeyboardFunc(keyboard);
+	glutMainLoop();
 
 
 	return 0;

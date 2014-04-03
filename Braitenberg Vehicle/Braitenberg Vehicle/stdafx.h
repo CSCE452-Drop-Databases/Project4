@@ -5,10 +5,10 @@
 
 #pragma once
 
-#include "targetver.h"
+
 
 #include <stdio.h>
-#include <tchar.h>
+
 
 #include <iostream>
 #include <vector>
@@ -17,3 +17,19 @@
 
 
 // TODO: reference additional headers your program requires here
+#ifdef _WIN32
+#include <tchar.h>
+#include "windows.h"
+#include "targetver.h"
+#include <gl/glut.h>
+#endif
+
+#ifdef __linux__
+#include <GL/glut.h>
+#endif
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#include <GLUT/glut.h>
+#endif

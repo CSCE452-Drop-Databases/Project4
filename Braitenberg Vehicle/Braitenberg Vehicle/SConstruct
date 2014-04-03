@@ -1,0 +1,6 @@
+env = Environment()
+#env.ParseFlags(['-framework=OpenGL'])
+env.Append(LINKFLAGS = ' -framework OpenGL -framework GLUT')
+#env.Append(LINKFLAGS = ' -framework OpenGL')
+env.Program(source = ['Braitenberg Vehicle.cpp', 'Point.cpp', 'Vehicle.cpp', 'Velocity.cpp'], target = 'BraitenbergVehicle.out')
+
