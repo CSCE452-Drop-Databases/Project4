@@ -77,8 +77,6 @@ void Vehicle::updateWheelSpeed(std::vector<LightSource> ls) {
 	}
 	//printf("Closest light source = %d\n", closest);
 
-	// TODO: Compute sensor values
-
-	rSOut = 1;
-	lSOut = 1;
+	rSOut = ls[closest].intensity(rSensor);
+	lSOut = ls[closest].intensity(lSensor);
 }

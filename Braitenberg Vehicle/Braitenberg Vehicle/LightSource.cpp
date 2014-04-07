@@ -18,7 +18,7 @@ LightSource::LightSource(Point _p) {
 
 double LightSource::intensity(Point _p) {
 	double distance = _p.distance(center);
-	if (distance == 0) {
+	if (distance <= 1) {
 		return 100;
 	} else {
 		return (100 / distance);
