@@ -5,11 +5,7 @@
 
 #pragma once
 
-
-
 #include <stdio.h>
-
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -33,3 +29,5 @@
 #include <OpenGL/glu.h>
 #include <GLUT/glut.h>
 #endif
+
+#include "Constants.h"

@@ -10,11 +10,6 @@ using namespace std;
 /* DEFINES */
 /*--------------------------------------------------------------------------*/
 
-#define ImageW 800
-#define ImageH 600
-
-
-
 
 vector<Vehicle> vehicles;
 vector<LightSource> lightSources;

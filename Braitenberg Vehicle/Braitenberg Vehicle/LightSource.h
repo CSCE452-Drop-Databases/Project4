@@ -1,12 +1,17 @@
 #pragma once
 #include "Point.h"
 
+static const int LIGHT_SOURCE_DEFAULT_WIDTH = 10;
+static const int LIGHT_SOURCE_DEFAULT_HEIGHT = 10;
+
 class LightSource {
 private:
 	//Location of LightSource in the 2D world
-	Point center;
+	//Point center;
 
 public:
+    Point center;
+    int width, height;
 
 	//Constructor
 	LightSource(int x = 0, int y = 0);

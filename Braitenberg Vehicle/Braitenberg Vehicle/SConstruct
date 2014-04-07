@@ -9,5 +9,5 @@ if sys == "Darwin":
 else:
     env.Append(LINKFLAGS = '-lGL -lGLU -lglut')
     
-env.Program(source = ['Braitenberg Vehicle.cpp', 'Point.cpp', 'Vehicle.cpp', 'Velocity.cpp'], target = 'BraitenbergVehicle.out')
+env.Program(source = ['Braitenberg Vehicle.cpp', 'Point.cpp', 'Vehicle.cpp', 'Velocity.cpp', 'LightSource.cpp'], target = 'BraitenbergVehicle.out')
 
