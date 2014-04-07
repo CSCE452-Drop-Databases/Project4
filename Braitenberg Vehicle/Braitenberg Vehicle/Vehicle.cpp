@@ -19,6 +19,11 @@ Vehicle::Vehicle(Point origin, int _k) {
 		k[1][0] = 0;
 		k[1][1] = 1;
 	}
+	//velocity = Velocity(1,1);
+
+
+	lSensor = Point(origin.x + width / 4, origin.y + height / 2);
+	rSensor = Point(origin.x - width / 4, origin.y + height / 2);
 
 }
 
@@ -26,22 +31,54 @@ Vehicle::Vehicle(const Vehicle &v) {
 	width = v.width;
 	height = v.height;
 	center = v.center;
+	lSensor = v.lSensor;
+	rSensor = v.rSensor;
 	//velocity = v.velocity;
 	k = v.k;
+	rotation = v.rotation;
 }
 
-double Vehicle::getRotation() {
-	//TODO should this be in degrees or radians?
-	//TODO implement this function
+void Vehicle::update(std::vector<LightSource> ls) {
+	updateWheelSpeed(ls);
 
-	return 0; //placeholder
+	// figure out wheel speed differences
+	double dif = rSOut - lSOut;
+	
+
+
+
+	center.x += 0;
+	center.y += 1;
+
 }
+
+// double Vehicle::getRotation() {
+// 	//TODO should this be in degrees or radians?
+// 	//TODO implement this function
+
+// 	return 0; //placeholder
+// }
 
 void Vehicle::updateWheelSpeed(std::vector<LightSource> ls) {
 	// TODO: Determine where sensors are since vehicle can rotate
 	// TODO: Decide how to implement this
 	// Could do it where it sums all intensities from every light
 	// OR could do it where it only uses closest light
-	rSOut = 0;
-	lSOut = 0;
+
+	// finding closest light source
+	int closest = 0;
+	double closestDist = INT_MAX;
+	for (int i = 0; i < ls.size(); ++i) {
+		double dist = center.distance(ls[i].center);
+		if (dist < closestDist) {
+			closest = i;
+			closestDist = dist;
+		}
+	}
+	//printf("Closest light source = %d\n", closest);
+
+	// TODO: Compute sensor values
+
+	rSOut = 1;
+	lSOut = 1;
 }
