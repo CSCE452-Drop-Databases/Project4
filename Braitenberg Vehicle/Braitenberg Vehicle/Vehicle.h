@@ -19,7 +19,8 @@ public:
 	Point center, lSensor, rSensor;
 	double rSOut, lSOut;
 	//Velocity velocity;
-	Matrix<int> k;
+	Matrix<double> k;
+	Matrix<double> wheelSpeeds;
 	double rotation; // rotation in degrees
 
 

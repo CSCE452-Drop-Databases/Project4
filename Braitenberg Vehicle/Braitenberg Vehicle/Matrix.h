@@ -13,15 +13,8 @@ private:
 
 public:
 	Matrix(int r = MATRIX_DEFAULT_ROW, int c = MATRIX_DEFAULT_COLUMN) {
-        if (r < MATRIX_DEFAULT_ROW || c < MATRIX_DEFAULT_COLUMN) {
-            printf("ERROR :  Matrix Constructor :: Invalid Dimensions, default %ux%u \n", MATRIX_DEFAULT_ROW, MATRIX_DEFAULT_COLUMN);
-            row = MATRIX_DEFAULT_ROW;
-            col = MATRIX_DEFAULT_COLUMN;
-        }
-        else {
-            row = r;
-            col = c;
-        }
+        row = r;
+        col = c;
 
         matrix = std::vector<std::vector<T> >(row, std::vector<T>(col));
 
