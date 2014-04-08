@@ -21,8 +21,7 @@ public:
 	//Velocity velocity;
 	Matrix<double> k;
 	Matrix<double> wheelSpeeds;
-	double rotation; // rotation in degrees
-
+	double rotation; // rotation in radians
 
 	Vehicle(Point origin, int _k);
 	Vehicle(const Vehicle &v);

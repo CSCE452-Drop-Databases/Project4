@@ -48,8 +48,15 @@ void Vehicle::update(std::vector<LightSource> ls) {
 	double dif = rSOut - lSOut;
 
 	//TODO update vehicle's rotation and position according to wheel speeds
-	center.x += 0;
-	center.y += 1;
+	//Equations pulled from here:
+
+
+	//http://rossum.sourceforge.net/papers/CalculationsForRobotics/CompendiumForKinematics.htm#_Toc125217344
+	double old_rot = rotation;
+	rotation += dif / width;
+	
+	center.x += ((rSOut + lSOut)/dif)* (width /2) *(sin(rotation) - sin(old_rot));
+	center.y += ((rSOut + lSOut)/dif)* (width /2) *(cos(rotation) - cos(old_rot));;
 	
 	//TODO update vehicle's sensor positions according to center position and rotation
 }
