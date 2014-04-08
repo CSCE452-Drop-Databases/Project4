@@ -26,6 +26,11 @@ void drawVehicles() {
 		Point c = vehicles[i].center;
 		int w = vehicles[i].width / 2;
 		int h = vehicles[i].height / 2;
+		double rotate_deg = (vehicles[i].rotation / (2 * PI)) * 360;
+		glPushMatrix();
+		glTranslated(c.x, c.y, 0);
+		glRotated(rotate_deg, 0, 0, 1);
+		glTranslated(-1 * c.x, -1 * c.y, 0);
 		glBegin(GL_QUADS);
 			glColor3f(1.0f, 1.0f, 1.0f);
 			glVertex2f(c.x - w, c.y - h);
@@ -63,6 +68,8 @@ void drawVehicles() {
 			glVertex2f(xOffset + ww, yOffset + wh);
 			glVertex2f(xOffset - ww, yOffset + wh);
 		glEnd();
+		//glTranslated(c.x, c.y, 0);
+		glPopMatrix();
 	}
 }
 
