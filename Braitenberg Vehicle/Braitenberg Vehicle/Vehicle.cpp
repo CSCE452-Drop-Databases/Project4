@@ -6,6 +6,7 @@ Vehicle::Vehicle(Point origin, int _k) {
 	width = VEHICLE_DEFAULT_WIDTH;
 	height = VEHICLE_DEFAULT_HEIGHT;
 	center = origin;
+	rotation = 1.570796;
 	wheelSpeeds = Matrix<double>(2, 1);
 	wheelSpeeds[0][0] = 1;
 	wheelSpeeds[1][0] = 1;
@@ -56,7 +57,11 @@ void Vehicle::update(std::vector<LightSource> ls) {
 	rotation += dif / width;
 	
 	center.x += ((rSOut + lSOut)/dif)* (width /2) *(sin(rotation) - sin(old_rot));
+
 	center.y += ((rSOut + lSOut)/dif)* (width /2) *(cos(rotation) - cos(old_rot));;
+	lSensor = Point(center.x + (cos(rotation)*height / 2) + (sin(rotation)*width / 4) + (sin(rotation)*height / 2) + (cos(rotation)*width / 4));
+	rSensor = Point(center.x + (cos(rotation)*height / 2) - (sin(rotation)*width / 4), center.y + (sin(rotation)*height / 2) + (cos(rotation)*width / 4));
+	
 	
 	//TODO update vehicle's sensor positions according to center position and rotation
 }
@@ -92,7 +97,7 @@ void Vehicle::updateWheelSpeed(std::vector<LightSource> ls) {
 	Matrix<double> senseMat(2, 1);
 	senseMat[0][0] = lSOut;
 	senseMat[1][0] = rSOut;
-
+	
 	wheelSpeeds = k * senseMat;
 	//std::cout << "Wheel speeds: " << wheelSpeeds[0][0] << ", " << wheelSpeeds[1][0] << std::endl;
 }
