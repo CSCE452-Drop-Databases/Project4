@@ -13,9 +13,9 @@ Vehicle::Vehicle(Point origin, int _k) {
 	k = Matrix<double>(2, 2);
 	if (_k == VEHICLE_K_CROSSED) {
 		k[0][0] = 0;
-		k[0][1] = 1;
+		k[0][1] = 0;
 		k[1][0] = 1;
-		k[1][1] = 0;
+		k[1][1] = 1;
 	}
 	else {
 		k[0][0] = 1;
@@ -24,7 +24,7 @@ Vehicle::Vehicle(Point origin, int _k) {
 		k[1][1] = 1;
 	}
 	//velocity = Velocity(1,1);
-
+	kType = _k;
 
 	lSensor = Point(origin.x + width / 4, origin.y + height / 2);
 	rSensor = Point(origin.x - width / 4, origin.y + height / 2);
@@ -39,6 +39,7 @@ Vehicle::Vehicle(const Vehicle &v) {
 	rSensor = v.rSensor;
 	//velocity = v.velocity;
 	k = v.k;
+	kType = v.kType;
 	rotation = v.rotation;
 }
 
@@ -59,6 +60,13 @@ void Vehicle::update(std::vector<LightSource> ls) {
 	center.x += ((rSOut + lSOut)/dif)* (width /2) *(sin(rotation) - sin(old_rot));
 
 	center.y += ((rSOut + lSOut)/dif)* (width /2) *(cos(rotation) - cos(old_rot));;
+
+	if (center.x == 0) center.x = ImageW;
+	if (center.y == 0) center.y = ImageH;
+
+	if (center.x > ImageW) center.x = 0;
+	if (center.y > ImageH) center.y = 0;
+
 	lSensor = Point(center.x + (cos(rotation)*height / 2) + (sin(rotation)*width / 4) + (sin(rotation)*height / 2) + (cos(rotation)*width / 4));
 	rSensor = Point(center.x + (cos(rotation)*height / 2) - (sin(rotation)*width / 4), center.y + (sin(rotation)*height / 2) + (cos(rotation)*width / 4));
 	

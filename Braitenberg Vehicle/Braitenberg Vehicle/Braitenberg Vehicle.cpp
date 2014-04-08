@@ -10,12 +10,14 @@ using namespace std;
 /* DEFINES */
 /*--------------------------------------------------------------------------*/
 
-static const int MOVE_VEHICLE_DELAY = 50;
+static const int MOVE_VEHICLE_DELAY = 10;
 
 
 vector<Vehicle> vehicles;
 vector<LightSource> lightSources;
 
+
+int kType = 0;
 
 bool placingLights = true;
 bool placingVehicles = false;
@@ -50,7 +52,8 @@ void drawVehicles() {
 		int yOffset = c.y - h;
 
 		glBegin(GL_QUADS);
-			glColor3f(1.0f, 0.0f, 1.0f);
+			if (vehicles[i].kType == VEHICLE_K_STRAIGHT) glColor3f(0.0f, 1.0f, 1.0f);
+			else glColor3f(1.0f, 0.0f, 1.0f);
 			glVertex2f(xOffset - ww, yOffset - wh);
 			glVertex2f(xOffset + ww, yOffset - wh);
 			glVertex2f(xOffset + ww, yOffset + wh);
@@ -62,7 +65,8 @@ void drawVehicles() {
 		yOffset = c.y - h;
 
 		glBegin(GL_QUADS);
-			glColor3f(1.0f, 0.0f, 1.0f);
+			if (vehicles[i].kType == VEHICLE_K_STRAIGHT) glColor3f(0.0f, 1.0f, 1.0f);
+			else glColor3f(1.0f, 0.0f, 1.0f);
 			glVertex2f(xOffset - ww, yOffset - wh);
 			glVertex2f(xOffset + ww, yOffset - wh);
 			glVertex2f(xOffset + ww, yOffset + wh);
@@ -113,12 +117,15 @@ void moveVehicles(int value) {
 
 void mouseClick(int button, int state, int x, int y) {
 	if (state == GLUT_UP) {
-		if (placingLights) {
-			lightSources.push_back(LightSource(Point(x, y)));
-		}
-		else if (placingVehicles) {
-			vehicles.push_back(Vehicle(Point(x,y), VEHICLE_K_STRAIGHT));
-		}
+		//if (placingLights) {
+			if (button == GLUT_LEFT_BUTTON) lightSources.push_back(LightSource(Point(x, y)));
+		//}
+		//else if (placingVehicles) {
+			if (button == GLUT_RIGHT_BUTTON) {
+				if (kType) vehicles.push_back(Vehicle(Point(x,y), VEHICLE_K_STRAIGHT));
+				else vehicles.push_back(Vehicle(Point(x,y), VEHICLE_K_CROSSED));
+			}
+		//}
 		//printf("#Lights = %d, #Vehicles = %d\n", lightSources.size(), vehicles.size());
 		glutPostRedisplay();
 	}
@@ -131,14 +138,20 @@ void mouseMove(int x, int y) {
 void keyboard(unsigned char key, int x, int y) {
 	switch (key) {
 		case ' ':
-			if (placingLights) {
-				placingLights = false;
-				placingVehicles = true;
-			}
-			else if (placingVehicles) {
+			//if (placingLights) {
+			// 	placingLights = false;
+			// 	placingVehicles = true;
+			// }
+			// else if (placingVehicles) {
 				placingVehicles = false;
-				glutTimerFunc(MOVE_VEHICLE_DELAY, moveVehicles, 0);
-			}
+				if (!simStarted) {
+					glutTimerFunc(MOVE_VEHICLE_DELAY, moveVehicles, 0);
+					simStarted = true;
+				}
+			//}
+			break;
+		case 'a':
+			kType = !kType;
 			break;
 	}
 }

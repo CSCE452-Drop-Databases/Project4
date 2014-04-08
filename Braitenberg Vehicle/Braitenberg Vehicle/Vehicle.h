@@ -20,6 +20,7 @@ public:
 	double rSOut, lSOut;
 	//Velocity velocity;
 	Matrix<double> k;
+	int kType;
 	Matrix<double> wheelSpeeds;
 	double rotation; // rotation in radians
 
